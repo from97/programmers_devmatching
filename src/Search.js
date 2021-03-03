@@ -3,15 +3,17 @@ export default class Search {
         this.section = document.createElement('section');
         this.section.className = 'search-section';
         $target.appendChild(this.section);
-        this.recentKeywords = keywords;
+        //this.recentKeywords = keywords;
         this.render();
-        this.focusOn();
+        //this.focusOn();
     }
 
+    /*
     focusOn() {
         const searchBox = document.querySelector('.search-box');
         searchBox.focus();
     }
+
 
     addKeyword() {
         if (this.recentKeywords.includes(keyword)) 
@@ -31,6 +33,7 @@ export default class Search {
         const searchBox = document.querySelector('.search-box');
         searchBox.value = '';
     }
+    */
 
     render() {
         this.section.innerHTML = '';
@@ -39,5 +42,15 @@ export default class Search {
         randomButton.className = 'random-button';
         randomButton.innerText = '🐱';
 
+        const searchBox = document.createElement('input');
+        searchBox.className = 'search-box';
+        searchBox.placeholder = '고양이를 검색하세요. ';
+
+        const recentKeywords = document.createElement('div');
+        recentKeywords.className = 'recent-keywords';
+
+        this.section.appendChild(randomButton);
+        this.section.appendChild(searchBox);
+        this.section.appendChild(recentKeywords);
     }
 }
