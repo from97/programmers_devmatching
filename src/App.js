@@ -1,3 +1,4 @@
+
 import Cat from './components/Cat.js';
 import Detail from './components/Detail.js';
 import Search from './components/Search.js';
