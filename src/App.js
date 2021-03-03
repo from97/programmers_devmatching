@@ -3,6 +3,7 @@ import Detail from './components/Detail.js';
 import Search from './components/Search.js';
 import Result from './components/Result.js';
 import DarkMode from './components/DarkMode.js';
+import { api } from './api/CatAPI.js';
 import { getItem, setItem } from './utils/sessionStorage.js';
 
 export default class App {
