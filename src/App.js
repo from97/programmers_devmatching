@@ -10,9 +10,9 @@ export default class App {
         this.$target = $target;
         const keywords = getItem('keywords');
 
-        const onSearch = keyword => {
+        const onSearch = async (keyword) => {
             //loading.toggleSpinner();
-            const response = api.fetchCats(keyword);
+            const response = await api.fetchCats(keyword);
             if (!response.isError) {
                 setItem('data', response.data);
                 Result.setState(response.data);
@@ -23,9 +23,9 @@ export default class App {
             }
         }
 
-        const onRandom = () => {
+        const onRandom = async () => {
             //loading.toggleSpinner();
-            const response = api.fetchRandomCats();
+            const response = await api.fetchRandomCats();
             if (!response.isError) {
                 setItem('data', response.data);
                 Result.setState(response.data);
