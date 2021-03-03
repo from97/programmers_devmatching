@@ -1,14 +1,42 @@
-import Sample from './Sample.js';
-import Cat from './Cat.js';
-import Detail from './Detail.js';
-import Search from './Search.js';
-import Result from './Result.js';
-import DarkMode from './DarkMode.js';
+
+import Cat from './components/Cat.js';
+import Detail from './components/Detail.js';
+import Search from './components/Search.js';
+import Result from './components/Result.js';
+import DarkMode from './components/DarkMode.js';
+import { getItem, setItem } from './utils/sessionStorage.js';
 
 export default class App {
     constructor($target) {
         this.$target = $target;
-        const search = new Search($target);
+        const keywords = getItem('keywords');
+
+        const onSearch = keyword => {
+            //loading.toggleSpinner();
+            const response = api.fetchCats(keyword);
+            if (!response.isError) {
+                setItem('data', response.data);
+                Result.setState(response.data);
+                //loading.toggleSpinner();
+            }
+            else {
+                error.setState(response.data);
+            }
+        }
+
+        const onRandom = () => {
+            //loading.toggleSpinner();
+            const response = api.fetchRandomCats();
+            if (!response.isError) {
+                setItem('data', response.data);
+                Result.setState(response.data);
+                //loading.toggleSpinner();
+            } else {
+                error.setState(response.data);
+            }
+        }
+
+        const search = new Search($target, keywords, onSearch, onRandom);
         //const result = new Result();
         //const detail = new Detail();
         const darkMode = new DarkMode($target);
